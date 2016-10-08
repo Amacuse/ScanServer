@@ -25,6 +25,8 @@ public class User implements Serializable {
     private String email;
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate birthday;
+    @Lob
+    private char[] password;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
@@ -38,6 +40,10 @@ public class User implements Serializable {
     }
 
     public User(Long id, String name, String email, String birthday) {
+        this(id, name, email, birthday, null);
+    }
+
+    public User(Long id, String name, String email, String birthday, char[] password) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -46,8 +52,8 @@ public class User implements Serializable {
         } else {
             this.birthday = LocalDate.parse(birthday);
         }
+        this.password = password;
     }
-
 
     public Long getId() {
         return id;
@@ -79,6 +85,14 @@ public class User implements Serializable {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
+    }
+
+    public char[] getPassword() {
+        return password;
+    }
+
+    public void setPassword(char[] password) {
+        this.password = password;
     }
 
     public Set<File> getFiles() {
