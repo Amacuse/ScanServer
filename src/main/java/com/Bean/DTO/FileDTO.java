@@ -78,7 +78,6 @@ public class FileDTO implements Serializable {
         return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
                 .append("id", id)
                 .append("fileName", fileName)
-                .append("content", content)
                 .append("backUpDate", backUpDate)
                 .toString();
     }

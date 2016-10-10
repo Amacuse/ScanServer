@@ -21,8 +21,7 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @RequestMapping(value = "/{id}",
-            method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUser(@PathVariable() Long id) {
         LOGGER.debug("Receive 'GET' request with user id: " + id);
         User user = service.get(id);
